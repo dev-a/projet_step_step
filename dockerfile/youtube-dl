@@ -1,0 +1,13 @@
+FROM alpine:latest
+RUN set -xe  \
+    && apk add --no-cache ca-certificates \
+                          ffmpeg \
+                          openssl  \
+                          python3 \
+                         &&   ln -s /usr/bin/python3?? /usr/bin/python  \
+   && wget https://yt-dl.org/latest/youtube-dl -O /usr/local/bin/youtube-dl    &&  \
+    chmod a+x /usr/local/bin/youtube-dl  &&  \
+   hash -r
+
+
+CMD    ["/bin/ash"]
