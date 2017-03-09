@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  youtube-dl:
+    build:
+      context: ./dockerfile
+      dockerfile: youtube-dl
+    image: youtube-dl
+    container_name: youtube-dl
+    tty: true
+    volumes:
+      - ./php/:/var/www/html/
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+        MYSQL_USER : root
+        MYSQL_ROOT_PASSWORD: root
